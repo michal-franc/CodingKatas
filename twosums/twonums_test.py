@@ -7,7 +7,7 @@ class SimpleTest(unittest.TestCase):
         target = 9
 
         expected = [0, 3]
-        actual = twonums.findhash(given, target)
+        actual = twonums.findhashonepass(given, target)
         self.assertEqual(actual, expected)
 
     def test_Equal2(self):
@@ -15,13 +15,13 @@ class SimpleTest(unittest.TestCase):
         target = 6 
 
         expected = [1, 2]
-        actual = twonums.findhash(given, target)
+        actual = twonums.findhashonepass(given, target)
         self.assertEqual(actual, expected)
 
     def test_Equal3(self):
-        given = [2, 11, 2, 7]
-        target = 4
+        given = [2, 11, 3, 7]
+        target = 5
 
         expected = [0, 2]
-        actual = twonums.findhash(given, target)
+        actual = twonums.findhashonepass(given, target)
         self.assertEqual(actual, expected)

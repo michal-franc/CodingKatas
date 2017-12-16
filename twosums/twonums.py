@@ -23,8 +23,18 @@ def findhash(array, target):
         nums[x] = i
 
     for i, x in enumerate(array):
-        if target - x in nums:
-            if i != nums[target-x]:
+        if target - x in nums and i != nums[target-x]:
                 return [i, nums[target-x]]
+
+    return "cannot work"
+
+def findhashonepass(array, target):
+
+    nums = {}
+
+    for i, x in enumerate(array):
+        nums[x] = i
+        if target - x in nums and i != nums[target-x]:
+            return [nums[target-x], i]
 
     return "cannot work"

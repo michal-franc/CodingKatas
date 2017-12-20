@@ -1,5 +1,5 @@
 class ListNode:
-    def __init__(self, x):
+    def __init__(self, x = 0):
         self.val = x
         self.next = None
 
@@ -18,26 +18,28 @@ def verifyNodes(values, l):
 
     return verifyNodes(values[1:], l.next)
 
-def _carryVal(i1, i2):
-    s = i1 + i2
-    newVal = s % 10
-    carry = s // 10
+def _calculateDigit(i1, i2):
+    sum = i1 + i2
+    newDigit= sum % 10
+    carry = sum // 10
 
-    return newVal, carry
+    return newDigit, carry
 
 def addTwoNumbers(l1, l2):
 
+    "add digit if matching missing for l1 or l2"
     if l1 == None:
-        l1 = ListNode(0)
+        l1 = ListNode()
 
     if l2 == None:
-        l2 = ListNode(0)
+        l2 = ListNode()
 
-    newVal, carry = _carryVal(l1.val, l2.val)
+    newDigit, carry = _calculateDigit(l1.val, l2.val)
 
-    l1.val = newVal
+    l1.val = newDigit
 
     if carry > 0:
+        "create new digit and initilize it"
         if l1.next == None:
             l1.next = ListNode(carry)
             if l2.next == None:

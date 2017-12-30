@@ -60,7 +60,7 @@ class BasicTestss(unittest.TestCase):
 
         actual = lengthOfLongestSubstring("dabcdvdf")
 
-        self.assertEquals(actual, 4)
+        self.assertEquals(actual, 5)
 
     def test_itReturns3Forabcabcbb(self):
 

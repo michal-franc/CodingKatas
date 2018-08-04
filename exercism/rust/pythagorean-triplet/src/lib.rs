@@ -29,5 +29,5 @@ fn brute() -> Option<u32> {
 }
 
 pub fn find() -> Option<u32> {
-    return brute()
+    brute()
 }

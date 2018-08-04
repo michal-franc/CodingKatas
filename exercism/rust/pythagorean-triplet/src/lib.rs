@@ -17,7 +17,8 @@ fn check(a: u32, b: u32) -> bool {
 fn brute() -> Option<u32> {
 
     for a in 1..STOP {
-        for b in 1..STOP {
+        // STOP - a and a + 1 due to a < b < c
+        for b in (a + 1)..(STOP - a) {
             if check(a, b) { 
                 let c = (1000 - (a + b));
                 println!("a: {}, b: {}, c: {}", a, b, c);

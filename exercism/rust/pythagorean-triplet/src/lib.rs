@@ -19,8 +19,9 @@ fn brute() -> Option<u32> {
     for a in 1..STOP {
         for b in 1..STOP {
             if check(a, b) { 
-                println!("a: {}, b: {}, c: {}", a, b, (1000 - (a + b)));
-                return Some(a * b * (1000 - (a + b)))
+                let c = (1000 - (a + b));
+                println!("a: {}, b: {}, c: {}", a, b, c);
+                return Some(a * b * c)
             }
         }
     }

@@ -106,3 +106,10 @@ class SimpleTest(unittest.TestCase):
 
         actual_arr = reverse(test_arr)
         self.assertEqual(expected_arr, actual_arr)
+
+    def test_complex(self):
+        test_arr = ['a', '!', '!', '!', 'b', '.', 'c', '.', 'd', ',', 'e', '\'', 'f', ',', 'g', 'h', 'i']
+        expected_arr = ['i', '!', '!', '!', 'h', '.', 'g', '.', 'f', ',', 'e', '\'', 'd', ',', 'c', 'b', 'a']
+
+        actual_arr = reverse(test_arr)
+        self.assertEqual(expected_arr, actual_arr)

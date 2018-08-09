@@ -16,7 +16,7 @@ def using_bits_int(string):
 
     for single_char in string:
         c_bit = ord(single_char) - ord('a')
-        if ((bit_holder & (1 << c_bit)) > 0):
+        if (bit_holder & (1 << c_bit)) > 0:
             return False
         bit_holder |= (1 << c_bit)
 

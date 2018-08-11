@@ -1,6 +1,6 @@
 import unittest
 
-def permutation(string):
+def permutation_dict_counting(string):
 
     char_count = {}
 
@@ -22,6 +22,23 @@ def permutation(string):
             found_one_odd = True
 
     return True
+
+def permutation(string):
+
+    checker = 0
+
+    for c in string.lower():
+        if c == ' ':
+            continue
+
+        # toggle bits if there are two letters that are the same bit will be zero
+        checker = toggle_bit(checker, ord(c) - ord('a'))
+
+
+    # if only one bit set then 
+    # 00010000 - 1 = 00001111
+    # 00010000 & 00001111 = 0
+    return checker & (checker - 1) == 0
 
 class SimpleTest(unittest.TestCase):
     def test_true(self):
@@ -50,4 +67,7 @@ class SimpleTest(unittest.TestCase):
         actual_result = permutation(test)
 
         self.assertEqual(actual_result, expected_result)
+
+def toggle_bit(integer, offset):
+    return integer ^ ( 1 << offset )
 

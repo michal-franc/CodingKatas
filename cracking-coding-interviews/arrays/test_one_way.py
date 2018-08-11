@@ -1,5 +1,10 @@
 import unittest
 
+# there are two cases
+# either strings are of the same length -> then we just count the differences in chars
+# one of the string is smaller by 1 -> and if diff we shift the index of the 'bigger' one
+# this is O(n)
+
 def one_way(first_string, second_string):
 
     # if len is bigger than 1 then there are more than 1 differences

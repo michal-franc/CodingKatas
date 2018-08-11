@@ -6,36 +6,36 @@ def one_way(first_string, second_string):
     if  abs(len(first_string) - len(second_string)) > 1:
         return False
 
+    if  min(len(first_string), len(second_string)) == 0:
+        return True
+
     first_index = 0
     second_index = 0
     found_one_diff = False
 
+    first_bigger = len(first_string) > len(second_string)
+    are_equal = len(first_string) == len(second_string)
+
     for _ in range(max(len(first_string), len(second_string))):
-
-        if not found_one_diff:
-            if first_index + 1 >= len(first_string) or second_index + 1 >= len(second_string):
-                break
-
         if first_string[first_index] != second_string[second_index]:
             if found_one_diff:
                 return False
 
             found_one_diff = True
 
-            if first_string[first_index + 1] == second_string[second_index]:
-                first_index += 1
-                continue
-
-            if first_string[first_index] == second_string[second_index + 1]:
-                second_index += 1
-                continue
+            if not are_equal:
+                if first_bigger:
+                    first_index += 1
+                    continue
+                else:
+                    second_index += 1
+                    continue
 
         first_index += 1
         second_index += 1
 
         if first_index >= len(first_string) or second_index >= len(second_string):
             break
-
 
     return True
 
@@ -53,6 +53,16 @@ class SimpleTest(unittest.TestCase):
     def test_long(self):
         first = "pale"
         second = "paleeeeeeeeessfff"
+
+        expected_result = False
+
+        actual_result = one_way(first, second)
+
+        self.assertEqual(actual_result, expected_result)
+
+    def test_pale_paef(self):
+        first = "pale"
+        second = "paef"
 
         expected_result = False
 

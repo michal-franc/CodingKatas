@@ -3,7 +3,6 @@ import unittest
 def permutation(string):
 
     char_count = {}
-    length_no_spaces = 0
 
     for c in string.lower():
         if c == ' ':
@@ -14,20 +13,13 @@ def permutation(string):
         else:
             char_count[c] += 1
 
-        length_no_spaces += 1
+    found_one_odd = False
 
-    if length_no_spaces % 2 == 0:
-        for key in char_count:
-            if char_count[key] % 2 != 0:
+    for key in char_count:
+        if char_count[key] % 2 != 0:
+            if found_one_odd:
                 return False
-    else:
-        one_odd = True
-        for key in char_count:
-            if char_count[key] % 2 != 0:
-                if one_odd:
-                    one_odd = False
-                    continue
-                return False
+            found_one_odd = True
 
     return True
 

@@ -2,37 +2,38 @@ import unittest
 
 def one_way(first_string, second_string):
 
+    # if len is bigger than 1 then there are more than 1 differences
     if  abs(len(first_string) - len(second_string)) > 1:
         return False
 
-    first_counter = 0
-    second_counter = 0
+    first_index = 0
+    second_index = 0
     found_one_diff = False
 
     for _ in range(max(len(first_string), len(second_string))):
 
         if not found_one_diff:
-            if first_counter + 1 >= len(first_string) or second_counter + 1 >= len(second_string):
+            if first_index + 1 >= len(first_string) or second_index + 1 >= len(second_string):
                 break
 
-        if first_string[first_counter] != second_string[second_counter]:
+        if first_string[first_index] != second_string[second_index]:
             if found_one_diff:
                 return False
 
             found_one_diff = True
 
-            if first_string[first_counter + 1] == second_string[second_counter]:
-                first_counter += 1
+            if first_string[first_index + 1] == second_string[second_index]:
+                first_index += 1
                 continue
 
-            if first_string[first_counter] == second_string[second_counter + 1]:
-                second_counter += 1
+            if first_string[first_index] == second_string[second_index + 1]:
+                second_index += 1
                 continue
 
-        first_counter += 1
-        second_counter += 1
+        first_index += 1
+        second_index += 1
 
-        if first_counter >= len(first_string) or second_counter >= len(second_string):
+        if first_index >= len(first_string) or second_index >= len(second_string):
             break
 
 

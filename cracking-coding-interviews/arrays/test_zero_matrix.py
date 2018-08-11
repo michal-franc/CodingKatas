@@ -8,22 +8,25 @@ def rotate(matrix):
     n = len(matrix)
     m = len(matrix[0])
 
-    zero_mask = [[1] * m for x in range(n)]
+    row_mask = [False for x in range(n)]
+    column_mask = [False for x in range(m)]
 
     # remember zeros in the initial array
     for x in range(n):
         for y in range(m):
             if matrix[x][y] == 0:
-                zero_mask[x][y] = 0
+                row_mask[x] = True
+                column_mask[x] = True
 
     for x in range(n):
-        for y in range(m):
-            if zero_mask[x][y] == 0:
-                for i in range(n):
-                    matrix[i][y] = 0
+        if row_mask[x]:
+            for i in range(m):
+                matrix[x][i] = 0
 
-                for j in range(m):
-                    matrix[x][j] = 0
+    for x in range(m):
+        if column_mask[x]:
+            for i in range(n):
+                matrix[i][x] = 0
 
     return matrix
 

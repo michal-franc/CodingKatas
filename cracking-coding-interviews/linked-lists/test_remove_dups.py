@@ -1,18 +1,6 @@
 import unittest
 from linked_list import Node, NodeList, LinkedList
-
-# Directly using Node to create a list
-
-def node_len(start_node):
-
-    len_counter = 0
-    current_node = start_node
-
-    while current_node != None:
-        current_node = current_node.next
-        len_counter += 1
-
-    return len_counter
+from node import node_len
 
 # This solution is O(n) as we dont need another loop to find previous Node
 # space is O(n) due to the buf

@@ -1,5 +1,78 @@
 import unittest
-from linked_list import Node, LinkedList
+from linked_list import Node, NodeList, LinkedList
+
+# Directly using Node to create a list
+
+def node_len(start_node):
+
+    len_counter = 0
+    current_node = start_node
+
+    while current_node != None:
+        current_node = current_node.next
+        len_counter += 1
+
+    return len_counter
+
+# This solution is O(n) as we dont need another loop to find previous Node
+# space is O(n) due to the buf
+def node_remove_dups(start_node):
+    buf = {}
+
+    current_node = start_node
+    previous_node = None
+
+    while current_node != None:
+        buff_next = current_node.next
+        if current_node.val in buf:
+            previous_node.next = buff_next
+            current_node.next = None
+            current_node = buff_next
+        else:
+            buf[current_node.val] = True
+            previous_node = current_node
+            current_node = buff_next
+
+    return start_node
+
+class UsingNodeTest(unittest.TestCase):
+    def test_double_1_duplicate(self):
+
+        start_node = NodeList(1, NodeList(1, None))
+
+        actual_list = node_remove_dups(start_node)
+
+        self.assertEqual(1, node_len(actual_list))
+
+    def test_double_2_duplicate(self):
+
+        start_node = NodeList(1, NodeList(1, NodeList(1, None)))
+
+        actual_list = node_remove_dups(start_node)
+
+        self.assertEqual(1, node_len(actual_list))
+
+    def test_one_node(self):
+
+        start_node = NodeList(1, None)
+
+        actual_list = node_remove_dups(start_node)
+
+        self.assertEqual(1, node_len(actual_list))
+
+    def test_more_complicated(self):
+
+        start_node = NodeList(1, NodeList(2, NodeList(3, NodeList(4, NodeList(1, None)))))
+
+        self.assertEqual(5, node_len(start_node))
+
+        actual_list = node_remove_dups(start_node)
+
+        self.assertEqual(4, node_len(actual_list))
+
+# this solution is O(n^2)
+# due to iterating through initial list 
+# and looking for a parent that is also a lookup
 
 def remove_dups(linked_list):
     buf = {}
@@ -17,7 +90,7 @@ def remove_dups(linked_list):
 
     return linked_list
 
-class SimpleTest(unittest.TestCase):
+class UsingLinkedListTest(unittest.TestCase):
     def test_double_no_duplicate_2(self):
 
         test_list = LinkedList(Node(1))

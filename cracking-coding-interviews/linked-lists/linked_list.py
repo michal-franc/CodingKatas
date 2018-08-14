@@ -1,5 +1,10 @@
 import unittest
 
+class NodeList(object):
+    def __init__(self, val, n):
+        self.next = n
+        self.val = val
+
 class Node(object):
     def __init__(self, val):
         self.next = None

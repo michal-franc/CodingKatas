@@ -49,8 +49,23 @@ def using_stack(start_node, kth):
 
     return stack.pop()
 
+# using recursive unwinding
+# this is O(n)
+def rec_call_undiwnding(node, kth):
+
+    if node is None:
+        return (-1, None)
+
+    (index, xth_node) = rec_call_undiwnding(node.next, kth)
+    index += 1
+    if index == kth:
+        return (index, node)
+
+    return (index, xth_node)
+
 def solution(start_node, kth):
-    return using_stack(start_node, kth)
+    (_, node) = rec_call_undiwnding(start_node, kth)
+    return node
 
 class KthToLastTest(unittest.TestCase):
     def test_simple_test(self):

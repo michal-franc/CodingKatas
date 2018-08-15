@@ -51,6 +51,10 @@ def using_stack(start_node, kth):
 
 # using recursive unwinding
 # this is O(n)
+# Example:
+# [1, 2, 3, 4] : k -> 2
+# 1 -> 2 -> 3 -> 4 
+# Node(2) <- (4, Node(2) <-(3, Node(2) <- (2, Node(2)) <- (1, None) <- (0, None) <- (-1, None)
 def rec_call_unwinding(node, kth):
 
     if node is None:
@@ -58,9 +62,12 @@ def rec_call_unwinding(node, kth):
 
     (index, xth_node) = rec_call_unwinding(node.next, kth)
     index += 1
+
+    # only set the 2nd value of tuple if kth hit
     if index == kth:
         return (index, node)
 
+    # push the 2nd value with the kth elemtn up the stack 
     return (index, xth_node)
 
 # iterative window

@@ -51,20 +51,47 @@ def using_stack(start_node, kth):
 
 # using recursive unwinding
 # this is O(n)
-def rec_call_undiwnding(node, kth):
+def rec_call_unwinding(node, kth):
 
     if node is None:
         return (-1, None)
 
-    (index, xth_node) = rec_call_undiwnding(node.next, kth)
+    (index, xth_node) = rec_call_unwinding(node.next, kth)
     index += 1
     if index == kth:
         return (index, node)
 
     return (index, xth_node)
 
+# iterative window
+# this is O(n) and space O(1)
+def iterative_window(node, kth):
+
+    start = node
+    end = node
+    
+    # this one creates a window of [start, 2, 3, 4, end], 6, 7, 8, 9
+    for i in range(kth + 1):
+        if end is None:
+            return None
+        end = end.next
+
+    # moves window unitl end is None 
+    # [start, 2, 3, 4, end], 6, 7, 8, 9
+    # 1, [start, 3, 4, 5, end], 7, 8, 9
+    # 1, 2, [start, 4, 5, 6, end], 8, 9
+    # 1, 2, 3, [start, 5, 6, 7, end], 9
+    # 1, 2, 3, 4, [start, 6, 7, 8, end]
+    while end is not None:
+        start = start.next
+        end = end.next
+
+    # 1, 2, 3, 4, [start, 6, 7, 8, end]
+    # return start
+    return start
+
 def solution(start_node, kth):
-    (_, node) = rec_call_undiwnding(start_node, kth)
+    node = iterative_window(start_node, kth)
     return node
 
 class KthToLastTest(unittest.TestCase):

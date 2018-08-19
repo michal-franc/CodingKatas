@@ -34,9 +34,6 @@ class FuncTest(unittest.TestCase):
         start_node = generate_node_list(raw_list)
 
         actual_node = partition(start_node, 5)
-        
-        print(print_list(start_node))
-        print(print_list(actual_node))
 
         actual_list = generate_list_node(actual_node)
 

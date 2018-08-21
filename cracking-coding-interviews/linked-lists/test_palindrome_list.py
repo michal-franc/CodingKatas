@@ -1,5 +1,5 @@
 import unittest
-from node import generate_node_list, generate_list_node, Node, print_list
+from node import generate_node_list, generate_list_node, Node, print_list, node_len
 
 def compare_lists(one, two):
     current_one = one
@@ -99,8 +99,46 @@ def is_palindrome_iterative_fast_slow(list_start):
 
     return True
 
+# if we know length we can go down through the recursive path to the middle
+# by doing length - 2 until we reach 0 or 1
+def is_palindrome_recursive(head, length):
+    # reaching the base case middle
+    # 1 - 2 - 3 - 2 - 1
+    #        base
+    # even - as 0 is the last step
+    if head is None or length <= 0:
+        return (head, True)
+    # odd - as -2 for odd should end on 1 -> next step would be -1
+    elif length == 1:
+        return (head.next, True)
+
+    # go down the recurssion
+    node, is_palin = is_palindrome_recursive(head.next, length - 2)
+
+    # if in one of the steps we have found that values dont match
+    # or one half of the the linked list is shorter
+    # we assume that its not palindrome
+    if is_palin is False or node is None:
+        return (head, False)
+
+    # check the value
+    is_palin = head.val == node.val
+
+    # move list on the left side to the next element
+    node = node.next
+
+    # move up the recurssion this will move head to the next element
+    # 1 - 2 - 3 - 2 - 1
+    #     h   b   n
+    # 1 - 2 - 3 - 2 - 1
+    # h               n 
+    # even
+    return (node, is_palin)
+
 def is_palindrome(list_start):
-    return is_palindrome_iterative_fast_slow(list_start)
+    l = node_len(list_start)
+    _, result = is_palindrome_recursive(list_start, l)
+    return result
 
 class FuncTest(unittest.TestCase):
     def test_reverse_list_one_element(self):

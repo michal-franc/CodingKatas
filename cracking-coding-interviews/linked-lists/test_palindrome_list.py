@@ -46,9 +46,61 @@ def reverse_list_with_clone(n):
 # can start processing recurrence with the current list this will make
 # space to be O(1)-if we dont count resources on the stack as part of space complexity
 
-def is_palindrome(list_start):
+def is_palindrome_reverse_compare(list_start):
     reversed_list = reverse_list_with_clone(list_start)
     return compare_lists(reversed_list, list_start)
+
+def is_palindrome_iterative_fast_slow(list_start):
+
+    fast = list_start
+    slow = list_start
+    stack = []
+
+    # for odd linked list -> 1 - 2 - 3 - 2 - 1
+    # 1 - 2 - 3 - 2 - 1
+    # slow
+    # fast
+    # 1 - 2 - 3 - 2 - 1
+    #     slow
+    #         fast
+    # 1 - 2 - 3 - 2 - 1
+    #         slow
+    #                 fast
+    # slow reached middle - fast is at the end
+
+    # for even linked list -> 1 - 2 - 2 - 1
+    # 1 - 2 - 2 - 1
+    # slow
+    # fast
+    # 1 - 2 - 2 - 1
+    #     slow
+    #         fast
+    # 1 - 2 - 2 - 1 - None
+    #         slow
+    #                 fast
+    # slow reached middle - fast is None
+
+    while fast is not None and fast.next is not None:
+        stack.append(slow.val)
+        slow = slow.next
+        fast = fast.next.next
+
+    # for odd ignore middle element
+    if fast is not None:
+        slow = slow.next
+
+    while slow is not None:
+        elem = stack.pop()
+
+        if elem != slow.val:
+            return False
+
+        slow = slow.next
+
+    return True
+
+def is_palindrome(list_start):
+    return is_palindrome_iterative_fast_slow(list_start)
 
 class FuncTest(unittest.TestCase):
     def test_reverse_list_one_element(self):

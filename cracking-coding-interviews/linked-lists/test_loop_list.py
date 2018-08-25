@@ -41,6 +41,8 @@ def is_loop_fast_slow(head):
         return None
 
     slow = head
+    # if whole linked list is loop then this will alwasy be false
+    # as the meeting point is the 'start' of the list
     while slow is not fast:
         slow = slow.next
         fast = fast.next

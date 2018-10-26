@@ -56,14 +56,22 @@ for node_key in nodes:
     remaining_colors = []
     available = False
 
+    # complexity O(N * M)
+    # where M is max degree
+    # colors_needed is not related to n but number of associatons
+    # so its not O(N)
     for c in colors_needed:
         available = True
+        # this is O(N)
         for n in node.neighbors:
             if n.color == c:
                 available = False
 
         if available:
             remaining_colors.append(c)
+
+    if len(remaining_colors) <= 0:
+        raise Exception('Oh Noes!')
 
     node.color = random.choice(remaining_colors)
 

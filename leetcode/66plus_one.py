@@ -1,5 +1,9 @@
 from simple_unittest import test
 
+# idea is simple just go from the last element and try to add +1
+# maintain carry and if carry is mainted for whole array
+# assume that 1 has to be added at the begginging
+
 def plus_one(array):
 
     if len(array) <= 0:

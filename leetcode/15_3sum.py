@@ -80,7 +80,12 @@ def threeSum(nums):
     if length < 3:
         return []
 
-    return threeSum_sorted(nums, length)
+    result = threeSum_sorted(nums, length)
+
+    unique_lst = []
+    [unique_lst.append(sub) for sub in result if not unique_lst.count(sub)]
+
+    return unique_lst
 
 test('two elements', threeSum([1, 2]), [])
 test('empty', threeSum([]), [])

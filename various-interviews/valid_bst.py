@@ -1,6 +1,33 @@
 from simple_unittest import test
 from binarytree import tree, bst, heap, Node
 
+# inorder depth traversal of bst returns sorted array
+def is_bst_valid_inorder_rec(root, array):
+
+    if root.left:
+        is_bst_valid_inorder_rec(root.left, array)
+
+    array.append(root.value)
+
+    if root.right:
+        is_bst_valid_inorder_rec(root.right, array)
+
+    return array
+
+
+def is_bst_valid_inorder(root):
+
+    array = is_bst_valid_inorder_rec(root, [])
+
+    previous = float('-inf')
+    for i in array:
+        if i < previous:
+            return False
+        else:
+            previous = i
+    
+    return True
+
 def is_bst_valid_rec(root, min_val, max_val):
 
     if root is None:
@@ -16,7 +43,8 @@ def is_bst_valid_rec(root, min_val, max_val):
     return is_bst_valid_rec(root.left, min_val, root.value) and is_bst_valid_rec(root.right, root.value, max_val)
     
 def is_bst_valid(root):
-    return is_bst_valid_rec(root, float('-inf'), float('inf'))
+    #return is_bst_valid_rec(root, float('-inf'), float('inf'))
+    return is_bst_valid_inorder(root)
 
 
 bst_tree = bst(height=3)

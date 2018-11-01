@@ -1,4 +1,6 @@
 # returns counter and reminder
+# checking how many times we can fit in the divisor multiplied by 2
+# multipling by two also counter using shifts
 def count_divisions(dividend, divisor):
 
     if divisor == 1:
@@ -25,21 +27,6 @@ def divide_two_ints(dividend, divisor):
 
     abs_dividend = abs(dividend)
     abs_divisor = abs(divisor)
-
-    # 10 / 3
-    # 10 - 3 -> True (+1)
-    # 10 - (3*2) -> True (using shift) (+1)
-    # 10 - (3*2*2) -> False (using shift)
-    # 10 - (3*2) = 4 (4 is the reminder then we repeat the same process with shifting)
-
-    # Reminder 10 - 6 -> 4
-    # 4 / 3
-    # 4 - 3 -> True (+1)
-    # 3 - 6 -> False
-
-    # Reminder 4 - 3 -> 1
-    # check if reminder is smaller than divisor at first step if it is then stop
-    # 1 / 3 but 1 < 3 -> then stop
 
     counter = 0
     while abs_dividend >= abs_divisor:

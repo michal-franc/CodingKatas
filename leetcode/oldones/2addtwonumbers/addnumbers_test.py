@@ -14,7 +14,7 @@ class SimpleTest(unittest.TestCase):
         l3 = addTwoNumbers(l1, l2)
         actual = verifyNodes([7, 0, 8], l3)
 
-        self.assertEquals(actual, True)
+        self.assertEqual(actual, True)
 
     def test_ListNodeNoCarry(self):
         l1 = ListNode(2)
@@ -28,7 +28,7 @@ class SimpleTest(unittest.TestCase):
         l3 = addTwoNumbers(l1, l2)
         actual = verifyNodes([7, 8, 4], l3)
 
-        self.assertEquals(actual, True)
+        self.assertEqual(actual, True)
 
     def test_ListNodeCarryOver(self):
         l1 = ListNode(1)
@@ -42,7 +42,7 @@ class SimpleTest(unittest.TestCase):
         l3 = addTwoNumbers(l1, l2)
         actual = verifyNodes([6, 0, 8], l3)
  
-        self.assertEquals(actual, True)
+        self.assertEqual(actual, True)
 
     def test_ListNodeNotSame(self):
         l1 = ListNode(1)
@@ -55,7 +55,7 @@ class SimpleTest(unittest.TestCase):
         l3 = addTwoNumbers(l1, l2)
         actual = verifyNodes([6, 0, 5], l3)
  
-        self.assertEquals(actual, True)
+        self.assertEqual(actual, True)
 
     def test_LeetCode0(self):
         l1 = ListNode(1)
@@ -66,7 +66,7 @@ class SimpleTest(unittest.TestCase):
         l3 = addTwoNumbers(l1, l2)
         actual = verifyNodes([1, 8], l3)
  
-        self.assertEquals(actual, True)
+        self.assertEqual(actual, True)
 
     def test_ListNodeCarryOverNewNode(self):
         l1 = ListNode(1)
@@ -80,7 +80,7 @@ class SimpleTest(unittest.TestCase):
         l3 = addTwoNumbers(l1, l2)
         actual = verifyNodes([6, 0, 1, 1], l3)
  
-        self.assertEquals(actual, True)
+        self.assertEqual(actual, True)
 
 class VerifyNodesTest(unittest.TestCase):
     def test_valuesMores(self):

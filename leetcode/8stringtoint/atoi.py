@@ -46,7 +46,7 @@ def atoiv1(s):
 # faster thanks to 
 # - lack of try catch
 # - lack of numbers[] so memory used should be lower
-def atoiv2(s):
+def atoi(s):
 
     numberStarted = False
     sign = ''

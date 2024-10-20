@@ -3,6 +3,7 @@ class TreeNode(object):
         self.val = val
         self.left = left
         self.right = right
+        self.next = None
 
     def __repr__(self):
         def traverse(root, level):
@@ -26,7 +27,7 @@ class TreeNode(object):
         if self.val != other.val:
             return False
 
-        return self.left == other.left and self.right == other.right
+        return self.left == other.left and self.right == other.right and self.next == other.next
         
 
 def buildTree(arr):
